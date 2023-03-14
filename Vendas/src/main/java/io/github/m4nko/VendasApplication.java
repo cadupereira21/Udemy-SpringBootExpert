@@ -2,6 +2,7 @@ package io.github.m4nko;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.context.annotation.ComponentScan;
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class VendasApplication {
 
-    @Autowired
-    @Qualifier("appName")
-    private String appName; // Variável referente à configuração na classe AppConfiguration -> appName()
+//    @Autowired
+//    @Qualifier("appName")
+//    private String appName; // Variável referente à configuração na classe AppConfiguration -> appName()
+
+    @Value("${application.name}") // Notação busca arquivo de propriedades application.properties e injeta o valor de application.name na variavel appName
+    private String appName;
 
     @GetMapping("/hello")
     public String helloWorld(){
