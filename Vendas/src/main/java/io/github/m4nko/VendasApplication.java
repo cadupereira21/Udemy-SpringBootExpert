@@ -20,12 +20,9 @@ public class VendasApplication {
     public CommandLineRunner init(@Autowired ClienteRepository clienteRepository){
         return args -> {
             Cliente cliente = new Cliente("Carlos");
-            clienteRepository.Salvar(cliente);
+            clienteRepository.salvar(cliente);
             Cliente cliente2 = new Cliente("Clara");
-            clienteRepository.Salvar(cliente2);
-
-            List<Cliente> todosClientes = clienteRepository.obterTodos();
-            todosClientes.forEach(System.out::println);
+            clienteRepository.salvar(cliente2);
         };
     }
     public static void main(String[] args) {

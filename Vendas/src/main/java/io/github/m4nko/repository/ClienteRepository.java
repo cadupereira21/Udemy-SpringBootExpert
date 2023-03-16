@@ -2,33 +2,19 @@ package io.github.m4nko.repository;
 
 import io.github.m4nko.model.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
 public class ClienteRepository {
-    private static String INSERT = "insert into cliente (nome) values (?)";
-    private static String SELECT_ALL = "SELECT * FROM CLIENTE";
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-    public Cliente Salvar(Cliente cliente){
-        jdbcTemplate.update(INSERT, new Object[]{cliente.getNome()});
-        return cliente;
-    }
+    private EntityManager entityManager;
 
-    public List<Cliente> obterTodos(){
-        return jdbcTemplate.query(SELECT_ALL, new RowMapper<Cliente>() {
-            @Override
-            public Cliente mapRow(ResultSet resultSet, int i) throws SQLException {
-                Integer id = resultSet.getInt("id");
-                String nome = resultSet.getString("nome");
-                return new Cliente(id, nome);
-            }
-        });
+    @Transactional // Anota que esse método será uma transação na base
+    public Cliente salvar(Cliente cliente){
+        entityManager.persist(cliente);
+        return cliente;
     }
 }
