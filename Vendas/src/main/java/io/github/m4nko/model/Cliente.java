@@ -12,7 +12,7 @@ public class Cliente {
     private Integer id;
     @Column(name = "NOME", length = 100)
     private String nome;
-    @OneToMany(mappedBy = "cliente") // Para que possamos pegar os pedidos ligados à esse cliente | mappedBy = atributo cliente nos pedidos
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY) // Para que possamos pegar os pedidos ligados à esse cliente | mappedBy = atributo cliente nos pedidos | fetch = diz ao Spring para trazer os dados de pedido sempre que cliente for consultado
     private Set<Pedido> pedidos;
 
     public Cliente() {
