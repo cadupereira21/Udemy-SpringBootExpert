@@ -1,11 +1,17 @@
 package io.github.m4nko.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-
+@Entity
+@Table(name = "PRODUTO")
 public class Produto {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="Id")
     private Integer id;
+    @Column(name = "Descricao")
     private String descricao;
+    @Column(name = "Preco_Unitario")
     private BigDecimal preco;
 
     public Integer getId() {

@@ -1,14 +1,27 @@
 package io.github.m4nko.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+@Entity
+@Table(name = "PEDIDO")
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "Cliente_Id")
     private Cliente cliente;
+    @Column(name = "Data_Pedido")
     private LocalDate dataPedido;
+    @Column(name = "Total", length = 20, precision = 2)
     private BigDecimal total;
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 
     public Integer getId() {
         return id;

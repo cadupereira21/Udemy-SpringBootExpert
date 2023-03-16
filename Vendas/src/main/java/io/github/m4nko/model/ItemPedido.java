@@ -1,10 +1,21 @@
 package io.github.m4nko.model;
 
-public class ItemPedido {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "ITEM_PEDIDO")
+public class ItemPedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "Pedido_Id")
     private Pedido pedido;
+    @ManyToOne
+    @JoinColumn(name = "Produto_Id")
     private Produto produto;
+    @Column(name = "Quantidade")
     private Integer quantidade;
 
     public Integer getId() {
