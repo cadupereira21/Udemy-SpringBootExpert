@@ -20,9 +20,14 @@ public class VendasApplication {
     public CommandLineRunner init(@Autowired ClienteRepository clienteRepository){
         return args -> {
             Cliente cliente = new Cliente("Carlos");
-            clienteRepository.salvar(cliente);
+            clienteRepository.save(cliente);
             Cliente cliente2 = new Cliente("Clara");
-            clienteRepository.salvar(cliente2);
+            clienteRepository.save(cliente2);
+
+            boolean existe = clienteRepository.existsByNome("Carlos");
+            System.out.println("Existe um cliente com o nome Carlos? " + existe);
+            boolean existe2 = clienteRepository.existsByNome("Vitor");
+            System.out.println("Existe um cliente com o nome Carlos? " + existe2);
         };
     }
     public static void main(String[] args) {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Udemy-SpringBootExpert.iml" filepath="$PROJECT_DIR$/.idea/Udemy-SpringBootExpert.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vendas/Vendas.iml" filepath="$PROJECT_DIR$/Vendas/Vendas.iml" />
+    </modules>
+  </component>
+</project>
