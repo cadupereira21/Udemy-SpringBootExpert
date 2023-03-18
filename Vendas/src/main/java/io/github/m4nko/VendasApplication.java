@@ -19,15 +19,6 @@ import java.util.List;
 @SpringBootApplication
 public class VendasApplication {
 
-    @Bean
-    public CommandLineRunner cmdLineRunner(@Autowired ClienteRepository clienteRepository){
-        return args -> {
-            Cliente c = new Cliente(null, "Carlos");
-            Cliente c2 = new Cliente(null, "Clara");
-            clienteRepository.save(c);
-            clienteRepository.save(c2);
-        };
-    }
     public static void main(String[] args) {
         SpringApplication.run(VendasApplication.class, args);
     }

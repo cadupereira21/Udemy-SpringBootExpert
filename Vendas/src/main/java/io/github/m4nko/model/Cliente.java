@@ -1,5 +1,7 @@
 package io.github.m4nko.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class Cliente {
     private Integer id;
     @Column(name = "NOME", length = 100)
     private String nome;
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY) // Para que possamos pegar os pedidos ligados à esse cliente | mappedBy = atributo cliente nos pedidos | fetch = diz ao Spring para trazer os dados de pedido sempre que cliente for consultado
     private Set<Pedido> pedidos;
 
