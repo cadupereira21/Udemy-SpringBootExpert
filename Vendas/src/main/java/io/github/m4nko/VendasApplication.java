@@ -17,31 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
-@RestController
 public class VendasApplication {
-
-    @Bean
-    public CommandLineRunner init(
-            @Autowired ClienteRepository clienteRepository,
-            @Autowired PedidoRepository pedidoRepository){
-        return args -> {
-            Cliente cliente = new Cliente("Carlos");
-            clienteRepository.save(cliente);
-            Cliente cliente2 = new Cliente("Clara");
-            clienteRepository.save(cliente2);
-
-            Pedido p = new Pedido();
-            p.setCliente(cliente);
-            p.setDataPedido(LocalDate.now());
-            p.setTotal(BigDecimal.valueOf(100));
-            pedidoRepository.save(p);
-
-//            Cliente result = clienteRepository.findClienteFetchPedidos(cliente.getId());
-//            System.out.println(result);
-//            System.out.println(result.getPedidos());
-            pedidoRepository.findByCliente(cliente).forEach(System.out::println); // Mesmo que código comentado acima
-        };
-    }
     public static void main(String[] args) {
         SpringApplication.run(VendasApplication.class, args);
     }
