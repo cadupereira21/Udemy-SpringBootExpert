@@ -4,13 +4,15 @@ import io.github.m4nko.model.Cliente;
 import io.github.m4nko.repository.ClienteRepository;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
-@Controller
+@RestController // Anotação especializada, eliminando a necessidade do Response Body
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
@@ -22,43 +24,40 @@ public class ClienteController {
 
     @GetMapping("/{id}") // Equivalente ao @RequestMapping com método get
     //@ResponseBody
-    public ResponseEntity<Cliente> getClienteById(@PathVariable Integer id){ // Parâmetro com anotação @RequestBody diz ao Spring para esperar no corpo da requisição um objeto Cliente (no formato JSON ou XML conforme parâmetro consume)
-        Optional<Cliente> result = clienteRepository.findById(id);
-
-        if(result.isPresent()) return ResponseEntity.ok(result.get());
-
-        return ResponseEntity.notFound().build();
+    public Cliente getClienteById(@PathVariable Integer id){ // Parâmetro com anotação @RequestBody diz ao Spring para esperar no corpo da requisição um objeto Cliente (no formato JSON ou XML conforme parâmetro consume)
+        return clienteRepository
+                .findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+        /* Na expressão acima o controller irá retornar um statis 200 caso findById() retorne um cliente
+        * mas irá jogar um ResponseStatusException de código 404 caso não dẽ certo, com a mensagem "Cliente não encontrado*/
     }
 
     @PostMapping
-    @ResponseBody
-    public ResponseEntity saveCliente(@RequestBody Cliente cliente){
-        Cliente result = clienteRepository.save(cliente);
-        return ResponseEntity.ok(result);
+    @ResponseStatus(HttpStatus.CREATED) // Modifica o retorno http padrão (cod 200)
+    public Cliente saveCliente(@RequestBody Cliente cliente){
+        return clienteRepository.save(cliente);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCliente(@PathVariable Integer id){
-            Optional<Cliente> result = clienteRepository.findById(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCliente(@PathVariable Integer id){
+            var result = clienteRepository.findById(id)
+                    .orElseThrow(() ->
+                            new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 
-            if(result.isPresent()){
-                clienteRepository.delete(result.get());
-                return ResponseEntity.noContent().build();
-            }
-
-            return ResponseEntity.notFound().build();
+            clienteRepository.delete(result);
     }
 
     @PutMapping("/{id}") // Qualquer dado enviado como nulo será atualizado para nulo na base (Update integral)
-    @ResponseBody
-    public ResponseEntity updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente){
-        return clienteRepository
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente){
+        clienteRepository
                 .findById(id)
                 .map(clienteExistente -> {
                     cliente.setId(clienteExistente.getId());
                     clienteRepository.save(cliente);
-                    return ResponseEntity.noContent().build();
-                }).orElseGet(() -> ResponseEntity.notFound().build());
+                    return clienteExistente;
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
 }
 
