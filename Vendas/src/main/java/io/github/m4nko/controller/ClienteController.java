@@ -2,6 +2,7 @@ package io.github.m4nko.controller;
 
 import io.github.m4nko.model.Cliente;
 import io.github.m4nko.repository.ClienteRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,30 @@ public class ClienteController {
     public ResponseEntity saveCliente(@RequestBody Cliente cliente){
         Cliente result = clienteRepository.save(cliente);
         return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteCliente(@PathVariable Integer id){
+            Optional<Cliente> result = clienteRepository.findById(id);
+
+            if(result.isPresent()){
+                clienteRepository.delete(result.get());
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/{id}") // Qualquer dado enviado como nulo será atualizado para nulo na base (Update integral)
+    @ResponseBody
+    public ResponseEntity updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente){
+        return clienteRepository
+                .findById(id)
+                .map(clienteExistente -> {
+                    cliente.setId(clienteExistente.getId());
+                    clienteRepository.save(cliente);
+                    return ResponseEntity.noContent().build();
+                }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
 
