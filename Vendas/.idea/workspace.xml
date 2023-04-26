@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d515d89-699d-4b0f-9e61-30c5a4fd889d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/validation/NotEmptyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/validation/validator/NotEmptyListValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/config/InternacionalizationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/message.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/domain/entity/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/domain/entity/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/domain/entity/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/domain/entity/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/dto/PedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/dto/PedidoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/validation/NotEmptyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/validation/NotEmptyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mySchema.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
