@@ -4,7 +4,10 @@ import io.github.m4nko.exception.PedidoNaoEncontradoException;
 import io.github.m4nko.exception.RegraNegocioException;
 import io.github.m4nko.rest.ApiErrors;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
@@ -20,5 +23,16 @@ public class ApplicationControllerAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiErrors handlePedidoNotFoundException( PedidoNaoEncontradoException ex ){
         return new ApiErrors(ex.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiErrors handleMethodNotValidException(MethodArgumentNotValidException ex){
+        var errors = ex.getBindingResult().getAllErrors()
+                .stream()
+                .map(erro -> erro.getDefaultMessage())
+                .collect(Collectors.toList());
+
+        return new ApiErrors(errors);
     }
 }

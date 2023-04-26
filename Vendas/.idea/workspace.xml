@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d515d89-699d-4b0f-9e61-30c5a4fd889d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/VendasApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/controller/ClienteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/controller/ProdutoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/model/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/model/ItemPedido.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/model/Pedido.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/model/Produto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/repository/ClienteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/repository/ItemPedidoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/repository/PedidoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/repository/ProdutoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/domain/entity/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/domain/entity/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/ApiErrors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/ApiErrors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/controller/ApplicationControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/controller/ApplicationControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/rest/controller/ClienteController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
