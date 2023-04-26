@@ -1,5 +1,6 @@
 package io.github.m4nko.rest.dto;
 
+import io.github.m4nko.validation.NotEmptyList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,6 @@ public class PedidoDTO {
     private Integer cliente;
     @NotNull(message = "Campo total do pedido é obrigatório.")
     private BigDecimal total;
+    @NotEmptyList(message = "Pedido não pode ser realizado sem itens.")
     private List<ItemPedidoDTO> items;
 }
