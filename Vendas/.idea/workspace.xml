@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d515d89-699d-4b0f-9e61-30c5a4fd889d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/service/impl/UsuarioServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/m4nko/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/m4nko/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
