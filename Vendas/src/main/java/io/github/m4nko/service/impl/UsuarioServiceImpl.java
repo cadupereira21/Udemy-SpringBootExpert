@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsuarioServiceImpl implements UserDetailsService {
@@ -31,5 +32,10 @@ public class UsuarioServiceImpl implements UserDetailsService {
                 .password(usuario.getSenha())
                 .roles()
                 .build();
+    }
+
+    @Transactional
+    public Usuario salvar(Usuario usuario){
+        return usuarioRepository.save(usuario);
     }
 }
