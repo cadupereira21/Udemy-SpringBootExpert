@@ -30,7 +30,7 @@ public class UsuarioServiceImpl implements UserDetailsService {
         return User.builder()
                 .username(usuario.getLogin())
                 .password(usuario.getSenha())
-                .roles()
+                .roles(roles)
                 .build();
     }
 
