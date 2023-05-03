@@ -1,4 +1,4 @@
-package io.github.m4nko;
+package io.github.m4nko.security.jwt;
 
 import io.github.m4nko.domain.entity.Usuario;
 import io.jsonwebtoken.Claims;
