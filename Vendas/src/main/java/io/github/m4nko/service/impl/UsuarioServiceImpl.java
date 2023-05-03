@@ -2,6 +2,7 @@ package io.github.m4nko.service.impl;
 
 import io.github.m4nko.domain.entity.Usuario;
 import io.github.m4nko.domain.repository.UsuarioRepository;
+import io.github.m4nko.exception.SenhaInvalidaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,5 +38,13 @@ public class UsuarioServiceImpl implements UserDetailsService {
     @Transactional
     public Usuario salvar(Usuario usuario){
         return usuarioRepository.save(usuario);
+    }
+
+    public UserDetails autenticar(Usuario usuario){
+        UserDetails user = loadUserByUsername(usuario.getLogin());
+        boolean senhasBatem = pwdEncoder.matches(usuario.getSenha(), user.getPassword());
+
+        if(senhasBatem) return user;
+        throw new SenhaInvalidaException();
     }
 }

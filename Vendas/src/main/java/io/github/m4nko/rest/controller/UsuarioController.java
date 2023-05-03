@@ -1,11 +1,18 @@
 package io.github.m4nko.rest.controller;
 
 import io.github.m4nko.domain.entity.Usuario;
+import io.github.m4nko.exception.SenhaInvalidaException;
+import io.github.m4nko.rest.dto.CredenciaisDTO;
+import io.github.m4nko.rest.dto.TokenDTO;
+import io.github.m4nko.security.jwt.JwtService;
 import io.github.m4nko.service.impl.UsuarioServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
@@ -16,6 +23,7 @@ public class UsuarioController {
 
     private final UsuarioServiceImpl service;
     private final PasswordEncoder pwdEncoder;
+    private final JwtService jwtService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -23,5 +31,20 @@ public class UsuarioController {
         String senhaCriptografada = pwdEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCriptografada);
         return service.salvar(usuario);
+    }
+
+    @PostMapping("/auth")
+    public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
+        try{
+            Usuario usuario = Usuario.builder()
+                    .login(credenciais.getLogin())
+                    .senha(credenciais.getSenha())
+                    .build();
+            UserDetails usuarioAutenticado = service.autenticar(usuario);
+            var token = jwtService.gerarToken(usuario);
+            return new TokenDTO(usuario.getLogin(), token);
+        } catch(UsernameNotFoundException | SenhaInvalidaException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
     }
 }
